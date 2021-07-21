@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--- 命名空间 namespace -->
+<mapper namespace="com.nacei.service.OrderAnalysisService">
+
+    <!-- 结果集映射 -->
+    <resultMap type="com.nacei.model.OrderAnalysis" id="orderAnalysis">
+        <result property="order_number"   column="order_number"   />
+        <result property="enterprise_waybill_no"   column="enterprise_waybill_no"   />
+        <result property="commodity_price"   column="commodity_price(including_deduction_amount)"   />
+        <result property="actual_payment_amount"   column="actual_payment_amount(final_payment)"   />
+        <result property="freight"   column="freight"   />
+        <result property="insurance_fee"   column="insurance_fee"   />
+        <result property="non_cash_deduction_amount"   column="non_cash_deduction_amount"   />
+        <result property="tax_collected_in_advance"   column="tax_collected_in_advance"   />
+        <result property="gross_weight"   column="gross_weight(kg)"   />
+        <result property="net_weight"   column="net_weight(kg)"   />
+        <result property="number_of_packages"   column="number_of_packages"   />
+        <result property="name_of_commerce_platform_subscriber"   column="name_of_e-commerce_platform_subscriber"   />
+        <result property="subscriber_telephone_number_of_commerce_platform"   column="subscriber_telephone_number_of_e-commerce_platform"   />
+        <result property="commerce_platform_subscriber_certificate_type"   column="e-commerce_platform_subscriber_certificate_type"   />
+        <result property="commerce_platform_subscriber_id_number"   column="e-commerce_platform_subscriber_id_number"   />
+        <result property="recipients_province_city_code"   column="recipients_province_city_code"   />
+        <result property="receiving_address"   column="receiving_address"   />
+        <result property="shipper_name"   column="shipper_name"   />
+        <result property="shipper_country_code"   column="shipper_country_code"   />
+        <result property="shippers_city_province_code"   column="shippers_city_province_code"   />
+        <result property="shippers_detailed_address"   column="shippers_detailed_address"   />
+        <result property="shippers_mobile_phone"   column="shippers_mobile_phone"   />
+        <result property="country_of_origin_code"   column="country_of_origin_code"   />
+        <result property="trade_name"   column="trade_name"   />
+        <result property="commodity_brand"   column="commodity_brand"   />
+        <result property="product_specifications"   column="product_specifications"   />
+        <result property="quantity_of_goods"   column="quantity_of_goods"   />
+        <result property="item_pricing"   column="item_pricing"   />
+        <result property="total_price_of_goods"   column="total_price_of_goods"   />
+        <result property="product_code"   column="product_code"   />
+        <result property="commodity_bar_code"   column="commodity_bar_code"   />
+        <result property="first_legal_quantity"   column="first_legal_quantity"   />
+        <result property="first_legal_unit_of_measurement"   column="first_legal_unit_of_measurement"   />
+        <result property="second_legal_quantity"   column="second_legal_quantity"   />
+        <result property="second_legal_unit_of_measurement"   column="second_legal_unit_of_measurement"   />
+        <result property="commodity_code"   column="commodity_code(original_commodity_customs_record_number)"   />
+        <result property="national_inspection_record_no"   column="national_inspection_record_no"   />
+        <result property="order_notes"   column="order_notes"   />
+        <result property="terminal_yard_code"   column="terminal_yard_code"   />
+        <result property="regulatory_venues"   column="regulatory_venues"   />
+        <result property="name_of_logistics_enterprise"   column="name_of_logistics_enterprise"   />
+        <result property="storage_place_of_goods"   column="storage_place_of_goods"   />
+        <result property="package_type"   column="package_type"   />
+        <result property="sorting_number"   column="sorting_number"   />
+        <result property="unit_of_measurement"   column="unit_of_measurement"   />
+        <result property="waybill_creation_date"   column="waybill_creation_date"   />
+    </resultMap>
+
+    <sql id="selectOrderAnalysisVo">
+        select `order_number`,   `enterprise_waybill_no`,   `commodity_price(including_deduction_amount)`,   `actual_payment_amount(final_payment)`,   `freight`,   `insurance_fee`,   `non_cash_deduction_amount`,   `tax_collected_in_advance`,   `gross_weight(kg)`,   `net_weight(kg)`,   `number_of_packages`,   `name_of_e-commerce_platform_subscriber`,   `subscriber_telephone_number_of_e-commerce_platform`,   `e-commerce_platform_subscriber_certificate_type`,   `e-commerce_platform_subscriber_id_number`,   `recipients_province_city_code`,   `receiving_address`,   `shipper_name`,   `shipper_country_code`,   `shippers_city_province_code`,   `shippers_detailed_address`,   `shippers_mobile_phone`,   `country_of_origin_code`,   `trade_name`,   `commodity_brand`,   `product_specifications`,   `quantity_of_goods`,   `item_pricing`,   `total_price_of_goods`,   `product_code`,   `commodity_bar_code`,   `first_legal_quantity`,   `first_legal_unit_of_measurement`,   `second_legal_quantity`,   `second_legal_unit_of_measurement`,   `commodity_code(original_commodity_customs_record_number)`,   `national_inspection_record_no`,   `order_notes`,   `terminal_yard_code`,   `regulatory_venues`,   `name_of_logistics_enterprise`,   `storage_place_of_goods`,   `package_type`,   `sorting_number`,   `unit_of_measurement`,   `waybill_creation_date`  from order_analysis
+    </sql>
+
+    <!-- 查询sql -->
+    <select id="selectOrderAnalysisById" resultMap="orderAnalysis">
+        select * from order_analysis where id = #{id}
+    </select>
+
+    <select id="selectOrderAnalysis" resultMap="orderAnalysis">
+        select * from order_analysis
+    </select>
+
+    <insert id="insertOrderAnalysis" parameterType="com.nacei.model.OrderAnalysis">
+        insert into order_analysis
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="order_number	 != null  and 	order_number	!= ''">`order_number`,</if>
+            <if test="enterprise_waybill_no	 != null  and 	enterprise_waybill_no	!= ''">`enterprise_waybill_no`,</if>
+            <if test="commodity_price	 != null  and 	commodity_price	!= ''">`commodity_price(including_deduction_amount)`,</if>
+            <if test="actual_payment_amount	 != null  and 	actual_payment_amount	!= ''">`actual_payment_amount(final_payment)`,</if>
+            <if test="freight	 != null  and 	freight	!= ''">`freight`,</if>
+            <if test="insurance_fee	 != null  and 	insurance_fee	!= ''">`insurance_fee`,</if>
+            <if test="non_cash_deduction_amount	 != null  and 	non_cash_deduction_amount	!= ''">`non_cash_deduction_amount`,</if>
+            <if test="tax_collected_in_advance	 != null  and 	tax_collected_in_advance	!= ''">`tax_collected_in_advance`,</if>
+            <if test="gross_weight	 != null  and 	gross_weight	!= ''">`gross_weight(kg)`,</if>
+            <if test="net_weight	 != null  and 	net_weight	!= ''">`net_weight(kg)`,</if>
+            <if test="number_of_packages	 != null  and 	number_of_packages	!= ''">`number_of_packages`,</if>
+            <if test="name_of_commerce_platform_subscriber	 != null  and 	name_of_commerce_platform_subscriber	!= ''">`name_of_e-commerce_platform_subscriber`,</if>
+            <if test="subscriber_telephone_number_of_commerce_platform	 != null  and 	subscriber_telephone_number_of_commerce_platform	!= ''">`subscriber_telephone_number_of_e-commerce_platform`,</if>
+            <if test="commerce_platform_subscriber_certificate_type	 != null  and 	commerce_platform_subscriber_certificate_type	!= ''">`e-commerce_platform_subscriber_certificate_type`,</if>
+            <if test="commerce_platform_subscriber_id_number	 != null  and 	commerce_platform_subscriber_id_number	!= ''">`e-commerce_platform_subscriber_id_number`,</if>
+            <if test="recipients_province_city_code	 != null  and 	recipients_province_city_code	!= ''">`recipients_province_city_code`,</if>
+            <if test="receiving_address	 != null  and 	receiving_address	!= ''">`receiving_address`,</if>
+            <if test="shipper_name	 != null  and 	shipper_name	!= ''">`shipper_name`,</if>
+            <if test="shipper_country_code	 != null  and 	shipper_country_code	!= ''">`shipper_country_code`,</if>
+            <if test="shippers_city_province_code	 != null  and 	shippers_city_province_code	!= ''">`shippers_city_province_code`,</if>
+            <if test="shippers_detailed_address	 != null  and 	shippers_detailed_address	!= ''">`shippers_detailed_address`,</if>
+            <if test="shippers_mobile_phone	 != null  and 	shippers_mobile_phone	!= ''">`shippers_mobile_phone`,</if>
+            <if test="country_of_origin_code	 != null  and 	country_of_origin_code	!= ''">`country_of_origin_code`,</if>
+            <if test="trade_name	 != null  and 	trade_name	!= ''">`trade_name`,</if>
+            <if test="commodity_brand	 != null  and 	commodity_brand	!= ''">`commodity_brand`,</if>
+            <if test="product_specifications	 != null  and 	product_specifications	!= ''">`product_specifications`,</if>
+            <if test="quantity_of_goods	 != null  and 	quantity_of_goods	!= ''">`quantity_of_goods`,</if>
+            <if test="item_pricing	 != null  and 	item_pricing	!= ''">`item_pricing`,</if>
+            <if test="total_price_of_goods	 != null  and 	total_price_of_goods	!= ''">`total_price_of_goods`,</if>
+            <if test="product_code	 != null  and 	product_code	!= ''">`product_code`,</if>
+            <if test="commodity_bar_code	 != null  and 	commodity_bar_code	!= ''">`commodity_bar_code`,</if>
+            <if test="first_legal_quantity	 != null  and 	first_legal_quantity	!= ''">`first_legal_quantity`,</if>
+            <if test="first_legal_unit_of_measurement	 != null  and 	first_legal_unit_of_measurement	!= ''">`first_legal_unit_of_measurement`,</if>
+            <if test="second_legal_quantity	 != null  and 	second_legal_quantity	!= ''">`second_legal_quantity`,</if>
+            <if test="second_legal_unit_of_measurement	 != null  and 	second_legal_unit_of_measurement	!= ''">`second_legal_unit_of_measurement`,</if>
+            <if test="commodity_code	 != null  and 	commodity_code	!= ''">`commodity_code(original_commodity_customs_record_number)`,</if>
+            <if test="national_inspection_record_no	 != null  and 	national_inspection_record_no	!= ''">`national_inspection_record_no`,</if>
+            <if test="order_notes	 != null  and 	order_notes	!= ''">`order_notes`,</if>
+            <if test="terminal_yard_code	 != null  and 	terminal_yard_code	!= ''">`terminal_yard_code`,</if>
+            <if test="regulatory_venues	 != null  and 	regulatory_venues	!= ''">`regulatory_venues`,</if>
+            <if test="name_of_logistics_enterprise	 != null  and 	name_of_logistics_enterprise	!= ''">`name_of_logistics_enterprise`,</if>
+            <if test="storage_place_of_goods	 != null  and 	storage_place_of_goods	!= ''">`storage_place_of_goods`,</if>
+            <if test="package_type	 != null  and 	package_type	!= ''">`package_type`,</if>
+            <if test="sorting_number	 != null  and 	sorting_number	!= ''">`sorting_number`,</if>
+            <if test="unit_of_measurement	 != null  and 	unit_of_measurement	!= ''">`unit_of_measurement`,</if>
+            <if test="waybill_creation_date	 != null  and 	waybill_creation_date	!= ''">`waybill_creation_date`,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="order_number	 != null  and 	order_number	!= ''">#{order_number},</if>
+            <if test="enterprise_waybill_no	 != null  and 	enterprise_waybill_no	!= ''">#{enterprise_waybill_no},</if>
+            <if test="commodity_price	 != null  and 	commodity_price	!= ''">#{commodity_price},</if>
+            <if test="actual_payment_amount	 != null  and 	actual_payment_amount	!= ''">#{actual_payment_amount},</if>
+            <if test="freight	 != null  and 	freight	!= ''">#{freight},</if>
+            <if test="insurance_fee	 != null  and 	insurance_fee	!= ''">#{insurance_fee},</if>
+            <if test="non_cash_deduction_amount	 != null  and 	non_cash_deduction_amount	!= ''">#{non_cash_deduction_amount},</if>
+            <if test="tax_collected_in_advance	 != null  and 	tax_collected_in_advance	!= ''">#{tax_collected_in_advance},</if>
+            <if test="gross_weight	 != null  and 	gross_weight	!= ''">#{gross_weight},</if>
+            <if test="net_weight	 != null  and 	net_weight	!= ''">#{net_weight},</if>
+            <if test="number_of_packages	 != null  and 	number_of_packages	!= ''">#{number_of_packages},</if>
+            <if test="name_of_commerce_platform_subscriber	 != null  and 	name_of_commerce_platform_subscriber	!= ''">#{name_of_commerce_platform_subscriber},</if>
+            <if test="subscriber_telephone_number_of_commerce_platform	 != null  and 	subscriber_telephone_number_of_commerce_platform	!= ''">#{subscriber_telephone_number_of_commerce_platform},</if>
+            <if test="commerce_platform_subscriber_certificate_type	 != null  and 	commerce_platform_subscriber_certificate_type	!= ''">#{commerce_platform_subscriber_certificate_type},</if>
+            <if test="commerce_platform_subscriber_id_number	 != null  and 	commerce_platform_subscriber_id_number	!= ''">#{commerce_platform_subscriber_id_number},</if>
+            <if test="recipients_province_city_code	 != null  and 	recipients_province_city_code	!= ''">#{recipients_province_city_code},</if>
+            <if test="receiving_address	 != null  and 	receiving_address	!= ''">#{receiving_address},</if>
+            <if test="shipper_name	 != null  and 	shipper_name	!= ''">#{shipper_name},</if>
+            <if test="shipper_country_code	 != null  and 	shipper_country_code	!= ''">#{shipper_country_code},</if>
+            <if test="shippers_city_province_code	 != null  and 	shippers_city_province_code	!= ''">#{shippers_city_province_code},</if>
+            <if test="shippers_detailed_address	 != null  and 	shippers_detailed_address	!= ''">#{shippers_detailed_address},</if>
+            <if test="shippers_mobile_phone	 != null  and 	shippers_mobile_phone	!= ''">#{shippers_mobile_phone},</if>
+            <if test="country_of_origin_code	 != null  and 	country_of_origin_code	!= ''">#{country_of_origin_code},</if>
+            <if test="trade_name	 != null  and 	trade_name	!= ''">#{trade_name},</if>
+            <if test="commodity_brand	 != null  and 	commodity_brand	!= ''">#{commodity_brand},</if>
+            <if test="product_specifications	 != null  and 	product_specifications	!= ''">#{product_specifications},</if>
+            <if test="quantity_of_goods	 != null  and 	quantity_of_goods	!= ''">#{quantity_of_goods},</if>
+            <if test="item_pricing	 != null  and 	item_pricing	!= ''">#{item_pricing},</if>
+            <if test="total_price_of_goods	 != null  and 	total_price_of_goods	!= ''">#{total_price_of_goods},</if>
+            <if test="product_code	 != null  and 	product_code	!= ''">#{product_code},</if>
+            <if test="commodity_bar_code	 != null  and 	commodity_bar_code	!= ''">#{commodity_bar_code},</if>
+            <if test="first_legal_quantity	 != null  and 	first_legal_quantity	!= ''">#{first_legal_quantity},</if>
+            <if test="first_legal_unit_of_measurement	 != null  and 	first_legal_unit_of_measurement	!= ''">#{first_legal_unit_of_measurement},</if>
+            <if test="second_legal_quantity	 != null  and 	second_legal_quantity	!= ''">#{second_legal_quantity},</if>
+            <if test="second_legal_unit_of_measurement	 != null  and 	second_legal_unit_of_measurement	!= ''">#{second_legal_unit_of_measurement},</if>
+            <if test="commodity_code	 != null  and 	commodity_code	!= ''">#{commodity_code},</if>
+            <if test="national_inspection_record_no	 != null  and 	national_inspection_record_no	!= ''">#{national_inspection_record_no},</if>
+            <if test="order_notes	 != null  and 	order_notes	!= ''">#{order_notes},</if>
+            <if test="terminal_yard_code	 != null  and 	terminal_yard_code	!= ''">#{terminal_yard_code},</if>
+            <if test="regulatory_venues	 != null  and 	regulatory_venues	!= ''">#{regulatory_venues},</if>
+            <if test="name_of_logistics_enterprise	 != null  and 	name_of_logistics_enterprise	!= ''">#{name_of_logistics_enterprise},</if>
+            <if test="storage_place_of_goods	 != null  and 	storage_place_of_goods	!= ''">#{storage_place_of_goods},</if>
+            <if test="package_type	 != null  and 	package_type	!= ''">#{package_type},</if>
+            <if test="sorting_number	 != null  and 	sorting_number	!= ''">#{sorting_number},</if>
+            <if test="unit_of_measurement	 != null  and 	unit_of_measurement	!= ''">#{unit_of_measurement},</if>
+            <if test="waybill_creation_date	 != null  and 	waybill_creation_date	!= ''">#{waybill_creation_date},</if>
+        </trim>
+    </insert>
+
+    <!-- 结果集映射 -->
+    <resultMap type="com.nacei.model.OrderAnalysisColumn" id="tableColumn">
+        <id column="table_name" property="table_name"/>
+        <result column="table_comment" property="table_comment"/>
+        <result column="column_name" property="column_name"/>
+        <result column="column_comment" property="column_comment"/>
+    </resultMap>
+
+    <select id="informationColumn" resultMap="tableColumn">
+        SELECT
+            a.table_name,
+            a.table_comment,
+            b.column_name,
+            b.column_comment
+        FROM
+            information_schema.TABLES a
+            LEFT JOIN information_schema.COLUMNS b ON a.table_name = b.TABLE_NAME
+        WHERE
+            a.table_schema = 'test'
+        ORDER BY
+            a.table_name
+    </select>
+
+    <select id="selectOrderAnalysisOverhaul" parameterType="com.nacei.model.OrderAnalysis" resultMap="orderAnalysis">
+        <include refid="selectOrderAnalysisVo"/>
+        <where>
+            <if test="order_number	 != null  and 	order_number	!= ''"> or `order_number` = #{order_number}</if>
+            <if test="enterprise_waybill_no	 != null  and 	enterprise_waybill_no	!= ''"> or `enterprise_waybill_no` = #{enterprise_waybill_no}</if>
+            <if test="commodity_price	 != null  and 	commodity_price	!= ''"> or `commodity_price(including_deduction_amount)` = #{commodity_price}</if>
+            <if test="actual_payment_amount	 != null  and 	actual_payment_amount	!= ''"> or `actual_payment_amount(final_payment)` = #{actual_payment_amount}</if>
+            <if test="freight	 != null  and 	freight	!= ''"> or `freight` = #{freight}</if>
+            <if test="insurance_fee	 != null  and 	insurance_fee	!= ''"> or `insurance_fee` = #{insurance_fee}</if>
+            <if test="non_cash_deduction_amount	 != null  and 	non_cash_deduction_amount	!= ''"> or `non_cash_deduction_amount` = #{non_cash_deduction_amount}</if>
+            <if test="tax_collected_in_advance	 != null  and 	tax_collected_in_advance	!= ''"> or `tax_collected_in_advance` = #{tax_collected_in_advance}</if>
+            <if test="gross_weight	 != null  and 	gross_weight	!= ''"> or `gross_weight(kg)` = #{gross_weight}</if>
+            <if test="net_weight	 != null  and 	net_weight	!= ''"> or `net_weight(kg)` = #{net_weight}</if>
+            <if test="number_of_packages	 != null  and 	number_of_packages	!= ''"> or `number_of_packages` = #{number_of_packages}</if>
+            <if test="name_of_commerce_platform_subscriber	 != null  and 	name_of_commerce_platform_subscriber	!= ''"> or `name_of_e-commerce_platform_subscriber` = #{name_of_commerce_platform_subscriber}</if>
+            <if test="subscriber_telephone_number_of_commerce_platform	 != null  and 	subscriber_telephone_number_of_commerce_platform	!= ''"> or `subscriber_telephone_number_of_e-commerce_platform` = #{subscriber_telephone_number_of_commerce_platform}</if>
+            <if test="commerce_platform_subscriber_certificate_type	 != null  and 	commerce_platform_subscriber_certificate_type	!= ''"> or `e-commerce_platform_subscriber_certificate_type` = #{commerce_platform_subscriber_certificate_type}</if>
+            <if test="commerce_platform_subscriber_id_number	 != null  and 	commerce_platform_subscriber_id_number	!= ''"> or `e-commerce_platform_subscriber_id_number` = #{commerce_platform_subscriber_id_number}</if>
+            <if test="recipients_province_city_code	 != null  and 	recipients_province_city_code	!= ''"> or `recipients_province_city_code` = #{recipients_province_city_code}</if>
+            <if test="receiving_address	 != null  and 	receiving_address	!= ''"> or `receiving_address` = #{receiving_address}</if>
+            <if test="shipper_name	 != null  and 	shipper_name	!= ''"> or `shipper_name` = #{shipper_name}</if>
+            <if test="shipper_country_code	 != null  and 	shipper_country_code	!= ''"> or `shipper_country_code` = #{shipper_country_code}</if>
+            <if test="shippers_city_province_code	 != null  and 	shippers_city_province_code	!= ''"> or `shippers_city_province_code` = #{shippers_city_province_code}</if>
+            <if test="shippers_detailed_address	 != null  and 	shippers_detailed_address	!= ''"> or `shippers_detailed_address` = #{shippers_detailed_address}</if>
+            <if test="shippers_mobile_phone	 != null  and 	shippers_mobile_phone	!= ''"> or `shippers_mobile_phone` = #{shippers_mobile_phone}</if>
+            <if test="country_of_origin_code	 != null  and 	country_of_origin_code	!= ''"> or `country_of_origin_code` = #{country_of_origin_code}</if>
+            <if test="trade_name	 != null  and 	trade_name	!= ''"> or `trade_name` = #{trade_name}</if>
+            <if test="commodity_brand	 != null  and 	commodity_brand	!= ''"> or `commodity_brand` = #{commodity_brand}</if>
+            <if test="product_specifications	 != null  and 	product_specifications	!= ''"> or `product_specifications` = #{product_specifications}</if>
+            <if test="quantity_of_goods	 != null  and 	quantity_of_goods	!= ''"> or `quantity_of_goods` = #{quantity_of_goods}</if>
+            <if test="item_pricing	 != null  and 	item_pricing	!= ''"> or `item_pricing` = #{item_pricing}</if>
+            <if test="total_price_of_goods	 != null  and 	total_price_of_goods	!= ''"> or `total_price_of_goods` = #{total_price_of_goods}</if>
+            <if test="product_code	 != null  and 	product_code	!= ''"> or `product_code` = #{product_code}</if>
+            <if test="commodity_bar_code	 != null  and 	commodity_bar_code	!= ''"> or `commodity_bar_code` = #{commodity_bar_code}</if>
+            <if test="first_legal_quantity	 != null  and 	first_legal_quantity	!= ''"> or `first_legal_quantity` = #{first_legal_quantity}</if>
+            <if test="first_legal_unit_of_measurement	 != null  and 	first_legal_unit_of_measurement	!= ''"> or `first_legal_unit_of_measurement` = #{first_legal_unit_of_measurement}</if>
+            <if test="second_legal_quantity	 != null  and 	second_legal_quantity	!= ''"> or `second_legal_quantity` = #{second_legal_quantity}</if>
+            <if test="second_legal_unit_of_measurement	 != null  and 	second_legal_unit_of_measurement	!= ''"> or `second_legal_unit_of_measurement` = #{second_legal_unit_of_measurement}</if>
+            <if test="commodity_code	 != null  and 	commodity_code	!= ''"> or `commodity_code(original_commodity_customs_record_number)` = #{commodity_code}</if>
+            <if test="national_inspection_record_no	 != null  and 	national_inspection_record_no	!= ''"> or `national_inspection_record_no` = #{national_inspection_record_no}</if>
+            <if test="order_notes	 != null  and 	order_notes	!= ''"> or `order_notes` = #{order_notes}</if>
+            <if test="terminal_yard_code	 != null  and 	terminal_yard_code	!= ''"> or `terminal_yard_code` = #{terminal_yard_code}</if>
+            <if test="regulatory_venues	 != null  and 	regulatory_venues	!= ''"> or `regulatory_venues` = #{regulatory_venues}</if>
+            <if test="name_of_logistics_enterprise	 != null  and 	name_of_logistics_enterprise	!= ''"> or `name_of_logistics_enterprise` = #{name_of_logistics_enterprise}</if>
+            <if test="storage_place_of_goods	 != null  and 	storage_place_of_goods	!= ''"> or `storage_place_of_goods` = #{storage_place_of_goods}</if>
+            <if test="package_type	 != null  and 	package_type	!= ''"> or `package_type` = #{package_type}</if>
+            <if test="sorting_number	 != null  and 	sorting_number	!= ''"> or `sorting_number` = #{sorting_number}</if>
+            <if test="unit_of_measurement	 != null  and 	unit_of_measurement	!= ''"> or `unit_of_measurement` = #{unit_of_measurement}</if>
+            <if test="waybill_creation_date	 != null  and 	waybill_creation_date	!= ''"> or `waybill_creation_date` = #{waybill_creation_date}</if>
+        </where>
+    </select>
+
+
+</mapper>
